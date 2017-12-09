@@ -10,7 +10,7 @@ const methods = [
 
 module.exports = {
   getRouter(prefix, ...middlewares) {
-    if (is.regExp(prefix)) throw new Error(`got ${prefix}, but egg-subrouter don't support regex path yet.`);
+    if (is.regExp(prefix)) throw new Error(`got ${prefix}, but egg-router-plus don't support regex path yet.`);
 
     if (!routerMap[prefix]) {
       const fnProxyMap = {};
@@ -50,6 +50,6 @@ function proxyFn(fn, prefix, middlewares) {
 }
 
 function addPrefix(prefix, path) {
-  if (is.regExp(path)) throw new Error(`got ${path}, but egg-subrouter don't support regex path yet.`);
+  if (is.regExp(path)) throw new Error(`got ${path}, but egg-router-plus don't support regex path yet.`);
   return prefix + path;
 }

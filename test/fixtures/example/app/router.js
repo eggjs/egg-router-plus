@@ -18,11 +18,11 @@ module.exports = app => {
   nameRouter.get('name_get', '/get', controller.admin.get);
   nameRouter.post('name_post', '/post', controller.admin.post);
 
-  // TODO: resource
+  // resource
   const postRouter = app.getRouter('/api', middleware.test({ prefix: 'posts' }));
   postRouter.resources('posts', '/posts', controller.posts);
 
-  // TODO: regex
+  // regex
   // const regexRouter = app.getRouter('/regex');
   // regexRouter.get(/^\/test\/.*/, controller.sub.get);
 };

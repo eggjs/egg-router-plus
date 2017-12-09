@@ -1,4 +1,4 @@
-# egg-subrouter
+# egg-router-plus
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -7,18 +7,18 @@
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/egg-subrouter.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-subrouter
-[travis-image]: https://img.shields.io/travis/eggjs/egg-subrouter.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-subrouter
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-subrouter.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-subrouter?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-subrouter.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-subrouter
-[snyk-image]: https://snyk.io/test/npm/egg-subrouter/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-subrouter
-[download-image]: https://img.shields.io/npm/dm/egg-subrouter.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-subrouter
+[npm-image]: https://img.shields.io/npm/v/egg-router-plus.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/egg-router-plus
+[travis-image]: https://img.shields.io/travis/atian25/egg-router-plus.svg?style=flat-square
+[travis-url]: https://travis-ci.org/atian25/egg-router-plus
+[codecov-image]: https://img.shields.io/codecov/c/github/atian25/egg-router-plus.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/atian25/egg-router-plus?branch=master
+[david-image]: https://img.shields.io/david/atian25/egg-router-plus.svg?style=flat-square
+[david-url]: https://david-dm.org/atian25/egg-router-plus
+[snyk-image]: https://snyk.io/test/npm/egg-router-plus/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/egg-router-plus
+[download-image]: https://img.shields.io/npm/dm/egg-router-plus.svg?style=flat-square
+[download-url]: https://npmjs.org/package/egg-router-plus
 
 <!--
 Description here.
@@ -27,16 +27,16 @@ Description here.
 ## Install
 
 ```bash
-$ npm i egg-subrouter --save
+$ npm i egg-router-plus --save
 ```
 
 ## Usage
 
 ```js
 // {app_root}/config/plugin.js
-exports.subrouter = {
+exports.router-plus = {
   enable: true,
-  package: 'egg-subrouter',
+  package: 'egg-router-plus',
 };
 ```
 
@@ -44,7 +44,7 @@ exports.subrouter = {
 
 ```js
 // {app_root}/config/config.default.js
-exports.subrouter = {
+exports.router-plus = {
 };
 ```
 

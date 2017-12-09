@@ -3,7 +3,7 @@
 const mock = require('egg-mock');
 const assert = require('assert');
 
-describe('test/subrouter.test.js', () => {
+describe('test/router.test.js', () => {
   let app;
   before(() => {
     app = mock.app({
@@ -18,7 +18,7 @@ describe('test/subrouter.test.js', () => {
   it('should GET /', () => {
     return app.httpRequest()
       .get('/')
-      .expect('hi, subrouter')
+      .expect('hi, egg')
       .expect(200);
   });
 

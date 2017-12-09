@@ -1,9 +1,9 @@
 {
-  "name": "egg-subrouter",
+  "name": "egg-router-plus",
   "version": "1.0.0",
   "description": "provide sub router for eggjs",
   "eggPlugin": {
-    "name": "subrouter"
+    "name": "routerPlus"
   },
   "keywords": [
     "egg",
@@ -37,21 +37,19 @@
     "autod": "autod"
   },
   "files": [
-    "app.js",
-    "agent.js",
-    "config"
+    "app"
   ],
   "ci": {
     "version": "8, 9"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atian25/egg-subrouter.git"
+    "url": "git+https://github.com/atian25/egg-router-plus.git"
   },
   "bugs": {
-    "url": "https://github.com/atian25/egg-subrouter/issues"
+    "url": "https://github.com/atian25/egg-router-plus/issues"
   },
-  "homepage": "https://github.com/atian25/egg-subrouter-subrouter#readme",
+  "homepage": "https://github.com/atian25/egg-router-plus-router-plus#readme",
   "author": "TZ <atian25@qq.com>",
   "license": "MIT"
 }
