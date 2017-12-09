@@ -12,6 +12,7 @@ describe('test/router.test.js', () => {
     return app.ready();
   });
 
+  beforeEach(() => app.mockCsrf());
   after(() => app.close());
   afterEach(mock.restore);
 
@@ -38,10 +39,74 @@ describe('test/router.test.js', () => {
     });
 
     it('should POST /sub/post', () => {
-      app.mockCsrf();
       return app.httpRequest()
         .post('/sub/post')
         .expect('sub post')
+        .expect(200);
+    });
+
+    it('should PUT /sub/put', () => {
+      return app.httpRequest()
+        .put('/sub/put')
+        .expect('sub put')
+        .expect(200);
+    });
+
+    it('should OPTIONS /sub/options', () => {
+      return app.httpRequest()
+        .options('/sub/options')
+        .expect('x-result', 'sub options')
+        .expect(200);
+    });
+
+    it('should PATCH /sub/patch', () => {
+      return app.httpRequest()
+        .patch('/sub/patch')
+        .expect('x-result', 'sub patch')
+        .expect(200);
+    });
+
+    it('should DELETE /sub/del', () => {
+      return app.httpRequest()
+        .delete('/sub/del')
+        .expect('x-result', 'sub del')
+        .expect(200);
+    });
+
+    it('should DELETE /sub/delete', () => {
+      return app.httpRequest()
+        .delete('/sub/delete')
+        .expect('x-result', 'sub del')
+        .expect(200);
+    });
+  });
+
+  describe.only('all', () => {
+    it('should GET /all/test', () => {
+      return app.httpRequest()
+        .get('/all/test')
+        .expect('x-result', 'all')
+        .expect(200);
+    });
+
+    it('should POST /all/test', () => {
+      return app.httpRequest()
+        .post('/all/test')
+        .expect('x-result', 'all')
+        .expect(200);
+    });
+
+    it('should PUT /all/test', () => {
+      return app.httpRequest()
+        .put('/all/test')
+        .expect('x-result', 'all')
+        .expect(200);
+    });
+
+    it('should DELETE /all/test', () => {
+      return app.httpRequest()
+        .delete('/all/test')
+        .expect('x-result', 'all')
         .expect(200);
     });
   });
@@ -56,7 +121,6 @@ describe('test/router.test.js', () => {
     });
 
     it('should POST /admin/post', () => {
-      app.mockCsrf();
       return app.httpRequest()
         .post('/admin/post')
         .expect('admin post')
@@ -80,7 +144,6 @@ describe('test/router.test.js', () => {
     });
 
     it('should POST /name/post', () => {
-      app.mockCsrf();
       return app.httpRequest()
         .post('/name/post')
         .expect('admin post')

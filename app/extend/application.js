@@ -4,11 +4,18 @@ const is = require('is-type-of');
 const routerMap = {};
 
 const methods = [
-  'head', 'options', 'get', 'put', 'patch', 'post', 'delete',
-  'all', 'resources', 'redirect',
+  'head', 'options', 'get', 'put', 'patch', 'post', 'delete', 'del', 'all', 'resources', 'redirect',
 ];
 
 module.exports = {
+  /**
+   * get sub router
+   *
+   * @method Application#getRouter
+   * @param {String} prefix - sub router prefix
+   * @param {...Function} [middlewares] - optional middlewares
+   * @return {Router} Return sub router with special prefix
+   */
   getRouter(prefix, ...middlewares) {
     if (is.regExp(prefix)) throw new Error(`got ${prefix}, but egg-router-plus don't support regex path yet.`);
 
@@ -19,7 +26,7 @@ module.exports = {
         get(target, property) {
           if (methods.includes(property)) {
             if (!fnProxyMap[property]) {
-              fnProxyMap[property] = proxyFn(target[property], prefix, middlewares);
+              fnProxyMap[property] = proxyFn(target, property, prefix, middlewares);
             }
             return fnProxyMap[property];
           }
@@ -32,9 +39,10 @@ module.exports = {
   },
 };
 
-function proxyFn(fn, prefix, middlewares) {
+function proxyFn(target, property, prefix, middlewares) {
+  const fn = target[property];
   const proxy = new Proxy(fn, {
-    apply(target, ctx, args) {
+    apply(targetFn, ctx, args) {
       if (args.length >= 3 && (is.string(args[1]) || is.regExp(args[1]))) {
         // app.get(name, url, [...middleware], controller)
         args[1] = addPrefix(prefix, args[1]);
@@ -42,8 +50,9 @@ function proxyFn(fn, prefix, middlewares) {
       } else {
         args[0] = addPrefix(prefix, args[0]);
         args.splice(1, 0, ...middlewares);
+        console.log(`patch ${property} with ${args[0]}`);
       }
-      return Reflect.apply(target, ctx, args);
+      return Reflect.apply(targetFn, ctx, args);
     },
   });
   return proxy;

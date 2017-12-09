@@ -5,9 +5,17 @@ module.exports = app => {
 
   router.get('/', controller.home.index);
 
+  const allRouter = app.getRouter('/all');
+  allRouter.all('/test', controller.home.all);
+
   const subRouter = app.getRouter('/sub');
   subRouter.get('/get', controller.sub.get);
   subRouter.post('/post', controller.sub.post);
+  subRouter.put('/put', controller.sub.put);
+  subRouter.delete('/delete', controller.sub.del);
+  subRouter.del('/del', controller.sub.del);
+  subRouter.options('/options', controller.sub.options);
+  subRouter.patch('/patch', controller.sub.patch);
   subRouter.get('/get/:id', controller.sub.getParam);
 
   const adminRouter = app.getRouter('/admin', middleware.test({ prefix: 'admin' }));
