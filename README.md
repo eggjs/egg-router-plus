@@ -20,9 +20,7 @@
 [download-image]: https://img.shields.io/npm/dm/egg-router-plus.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-router-plus
 
-<!--
-Description here.
--->
+The missing router feature for [eggjs](https://eggjs.org)
 
 ## Install
 
@@ -30,33 +28,53 @@ Description here.
 $ npm i egg-router-plus --save
 ```
 
-## Usage
+Then mount plugin:
 
 ```js
 // {app_root}/config/plugin.js
-exports.router-plus = {
+exports.routerPlus = {
   enable: true,
   package: 'egg-router-plus',
 };
 ```
 
-## Configuration
+## Usage
 
 ```js
-// {app_root}/config/config.default.js
-exports.router-plus = {
+app.getRouter(prefix, ...middlewares);
+```
+
+- `prefix` - {String}, the prefix string of sub router
+- `middlewares` - {...Function}, optional
+
+Support same as Router:
+
+- `router.verb('path-match', app.controller.controller.action);`
+- `router.verb('router-name', 'path-match', app.controller.controller.action);`
+- `router.verb('path-match', middleware1, ..., middlewareN, app.controller.controller.action);`
+- `router.verb('router-name', 'path-match', middleware1, ..., middlewareN, app.controller.controller.action);`
+
+Note: `prefix` and `path` are not allow to be `regex`.
+
+```js
+// {app_root}/app/router.js
+module.exports = app => {
+  const subRouter = app.getRouter('/sub');
+  // curl localhost:7001/sub/test
+  subRouter.get('/test', app.controller.sub.test);
+  subRouter.get('sub_upload', '/upload', app.controller.sub.upload);
+
+  // const subRouter = app.getRouter('/sub/:id');
+  // cont subRouter = app.getRouter('/sub', app.middleware.jsonp());
+
+  // output: /sub/upload
+  console.log(app.url('sub_upload'));
 };
 ```
 
-see [config/config.default.js](config/config.default.js) for more detail.
-
-## Example
-
-<!-- example here -->
-
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+Please open an issue [here](https://github.com/atian25/egg-router-plus/issues).
 
 ## License
 

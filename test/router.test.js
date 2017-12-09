@@ -81,7 +81,7 @@ describe('test/router.test.js', () => {
     });
   });
 
-  describe.only('all', () => {
+  describe('all', () => {
     it('should GET /all/test', () => {
       return app.httpRequest()
         .get('/all/test')
