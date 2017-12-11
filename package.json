@@ -1,7 +1,7 @@
 {
   "name": "egg-router-plus",
   "version": "1.0.0",
-  "description": "provide sub router for eggjs",
+  "description": "The missing router feature for eggjs",
   "eggPlugin": {
     "name": "routerPlus"
   },

@@ -45,14 +45,14 @@ app.router.namespace(prefix, ...middlewares);
 ```
 
 - `prefix` - {String}, the prefix string of sub router
-- `middlewares` - {...Function}, optional
+- `middlewares` - {...Function}, optional group middlewares
 
 Support same as Router:
 
-- `router.verb('path-match', app.controller.controller.action);`
-- `router.verb('path-match', middleware1, ..., middlewareN, app.controller.controller.action);`
-- `router.verb('router-name', 'path-match', app.controller.controller.action);`
-- `router.verb('router-name', 'path-match', middleware1, ..., middlewareN, app.controller.controller.action);`
+- `router.verb('path-match', app.controller.action);`
+- `router.verb('path-match', middleware1, ..., middlewareN, app.controller.action);`
+- `router.verb('router-name', 'path-match', app.controller.action);`
+- `router.verb('router-name', 'path-match', middleware1, ..., middlewareN, app.controller.action);`
 
 Note: `prefix` and `path` are not allow to be `regex`.
 
