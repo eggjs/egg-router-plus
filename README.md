@@ -41,7 +41,7 @@ exports.routerPlus = {
 ## Usage
 
 ```js
-app.getRouter(prefix, ...middlewares);
+app.router.namespace(prefix, ...middlewares);
 ```
 
 - `prefix` - {String}, the prefix string of sub router
@@ -50,8 +50,8 @@ app.getRouter(prefix, ...middlewares);
 Support same as Router:
 
 - `router.verb('path-match', app.controller.controller.action);`
-- `router.verb('router-name', 'path-match', app.controller.controller.action);`
 - `router.verb('path-match', middleware1, ..., middlewareN, app.controller.controller.action);`
+- `router.verb('router-name', 'path-match', app.controller.controller.action);`
 - `router.verb('router-name', 'path-match', middleware1, ..., middlewareN, app.controller.controller.action);`
 
 Note: `prefix` and `path` are not allow to be `regex`.
@@ -59,17 +59,36 @@ Note: `prefix` and `path` are not allow to be `regex`.
 ```js
 // {app_root}/app/router.js
 module.exports = app => {
-  const subRouter = app.getRouter('/sub');
+  const subRouter = app.router.namespace('/sub');
   // curl localhost:7001/sub/test
   subRouter.get('/test', app.controller.sub.test);
   subRouter.get('sub_upload', '/upload', app.controller.sub.upload);
 
-  // const subRouter = app.getRouter('/sub/:id');
-  // cont subRouter = app.getRouter('/sub', app.middleware.jsonp());
+  // const subRouter = app.router.namespace('/sub/:id');
+  // cont subRouter = app.router.namespace('/sub', app.middleware.jsonp());
 
   // output: /sub/upload
   console.log(app.url('sub_upload'));
 };
+```
+
+## Known issues
+
+- sub `redirect` is not support, use `app.router.redirect()` or redirect to a named router.
+
+```js
+const subRouter = app.router.namespace('/sub');
+
+// will redirect `/sub/go` to `/anyway`, not `/sub/anyway`
+subRouter.redirect('/go', '/anyway');
+
+// just use router
+router.redirect('/sub/go', '/sub/anyway');
+
+// or redirect to a named router
+subRouter.get('name_router', '/anyway', app.controller.sub.anyway);
+// will redirect `/sub/go_name` to `/sub/anyway` which is named `name_router`
+subRouter.redirect('/sub/go_name', 'name_router');
 ```
 
 ## Questions & Suggestions

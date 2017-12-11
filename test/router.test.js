@@ -23,6 +23,31 @@ describe('test/router.test.js', () => {
       .expect(200);
   });
 
+  it('should cache router', () => {
+    const router1 = app.router.namespace('/test');
+    const router2 = app.router.namespace('/test');
+    assert(router1 === router2);
+  });
+
+  it('dont support regex prefix', () => {
+    try {
+      app.router.namespace(/^test\/.*/);
+      throw 'should not run here';
+    } catch (err) {
+      assert(err.message.includes('only support prefix with string'));
+    }
+  });
+
+  it('dont support regex path', () => {
+    try {
+      const router = app.router.namespace('/test');
+      router.get('name', /(\d+)/, app.controller.home.index);
+      throw 'should not run here';
+    } catch (err) {
+      assert(err.message.includes('only support path with string'));
+    }
+  });
+
   describe('sub', () => {
     it('should GET /sub/get', () => {
       return app.httpRequest()
@@ -38,11 +63,18 @@ describe('test/router.test.js', () => {
         .expect(200);
     });
 
-    it.skip('should redirect /sub/go', () => {
+    it('should redirect /sub/go', () => {
       return app.httpRequest()
-        .head('/sub/go')
+        .get('/sub/go')
         .expect(301)
         .expect('location', '/sub/get');
+    });
+
+    it('should redirect to name router', () => {
+      return app.httpRequest()
+        .get('/sub/go_name')
+        .expect(301)
+        .expect('location', '/sub/name');
     });
 
     it('should POST /sub/post', () => {
