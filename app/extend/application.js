@@ -50,7 +50,10 @@ function proxyFn(target, property, prefix, middlewares) {
       } else {
         args[0] = addPrefix(prefix, args[0]);
         args.splice(1, 0, ...middlewares);
-        // console.log(`patch ${property} with ${args[0]}`);
+        // if (property === 'redirect') {
+        //   // args[1] = addPrefix(prefix, args[1]);
+        //   console.log(args)
+        // }
       }
       return Reflect.apply(targetFn, ctx, args);
     },

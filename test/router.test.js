@@ -38,6 +38,13 @@ describe('test/router.test.js', () => {
         .expect(200);
     });
 
+    it.skip('should redirect /sub/go', () => {
+      return app.httpRequest()
+        .head('/sub/go')
+        .expect(301)
+        .expect('location', '/sub/get');
+    });
+
     it('should POST /sub/post', () => {
       return app.httpRequest()
         .post('/sub/post')

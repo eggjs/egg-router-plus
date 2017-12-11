@@ -16,7 +16,10 @@ module.exports = app => {
   subRouter.del('/del', controller.sub.del);
   subRouter.options('/options', controller.sub.options);
   subRouter.patch('/patch', controller.sub.patch);
+
   subRouter.get('/get/:id', controller.sub.getParam);
+  subRouter.redirect('/go', '/');
+  // router.redirect('/sub/go', '/sub/get');
 
   const adminRouter = app.getRouter('/admin', middleware.test({ prefix: 'admin' }));
   adminRouter.get('/get', controller.admin.get);

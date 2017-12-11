@@ -3,10 +3,11 @@
 const mock = require('egg-mock');
 const assert = require('assert');
 
-describe.only('test/regext.test.js', () => {
+describe.skip('test/regex.test.js', () => {
   let app;
 
   afterEach(mock.restore);
+  afterEach(() => app.close());
 
   it('prefix is not allow to be regex', async () => {
     app = mock.app({
