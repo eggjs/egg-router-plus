@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const Router = require('./lib/router');
 
 module.exports = app => {
@@ -16,4 +17,15 @@ module.exports = app => {
   app.router.namespace = (...args) => {
     return router.namespace(...args);
   };
+
+  app.beforeStart(() => {
+    const loader = new app.loader.FileLoader({
+      directory: path.join(app.baseDir, 'app/router'),
+      target: {},
+      inject: app,
+      call: true,
+    });
+
+    loader.load();
+  });
 };

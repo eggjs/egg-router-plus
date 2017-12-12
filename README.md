@@ -38,7 +38,13 @@ exports.routerPlus = {
 };
 ```
 
-## Usage
+## Features
+
+### load `app/router/**/*.js`
+
+this plugin will auto load router define at `app/router/**/*.js`
+
+### app.router.namespace
 
 ```js
 app.router.namespace(prefix, ...middlewares);
