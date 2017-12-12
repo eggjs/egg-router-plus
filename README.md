@@ -9,18 +9,18 @@
 
 [npm-image]: https://img.shields.io/npm/v/egg-router-plus.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-router-plus
-[travis-image]: https://img.shields.io/travis/atian25/egg-router-plus.svg?style=flat-square
-[travis-url]: https://travis-ci.org/atian25/egg-router-plus
-[codecov-image]: https://img.shields.io/codecov/c/github/atian25/egg-router-plus.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/atian25/egg-router-plus?branch=master
-[david-image]: https://img.shields.io/david/atian25/egg-router-plus.svg?style=flat-square
-[david-url]: https://david-dm.org/atian25/egg-router-plus
+[travis-image]: https://img.shields.io/travis/eggjs/egg-router-plus.svg?style=flat-square
+[travis-url]: https://travis-ci.org/eggjs/egg-router-plus
+[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-router-plus.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/eggjs/egg-router-plus?branch=master
+[david-image]: https://img.shields.io/david/eggjs/egg-router-plus.svg?style=flat-square
+[david-url]: https://david-dm.org/eggjs/egg-router-plus
 [snyk-image]: https://snyk.io/test/npm/egg-router-plus/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/egg-router-plus
 [download-image]: https://img.shields.io/npm/dm/egg-router-plus.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-router-plus
 
-The missing router feature for [eggjs](https://eggjs.org)
+The missing router features for [eggjs](https://eggjs.org)
 
 ## Install
 
@@ -99,7 +99,7 @@ subRouter.redirect('/sub/go_name', 'name_router');
 
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/atian25/egg-router-plus/issues).
+Please open an issue [here](https://github.com/eggjs/egg/issues).
 
 ## License
 
