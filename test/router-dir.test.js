@@ -2,7 +2,7 @@
 
 const mock = require('egg-mock');
 
-describe.only('test/router-dir.test.js', () => {
+describe('test/router-dir.test.js', () => {
   let app;
   before(() => {
     app = mock.app({

@@ -20,6 +20,7 @@ describe('test/router.test.js', () => {
     return app.httpRequest()
       .get('/')
       .expect('hi, egg')
+      .expect('foo', 'bar')
       .expect(200);
   });
 
@@ -49,6 +50,14 @@ describe('test/router.test.js', () => {
   });
 
   describe('sub', () => {
+    it('should exec after config.middleware', () => {
+      return app.httpRequest()
+        .get('/sub/get')
+        .expect('sub get')
+        .expect('foo', 'bar')
+        .expect(200);
+    });
+
     it('should GET /sub/get', () => {
       return app.httpRequest()
         .get('/sub/get')
