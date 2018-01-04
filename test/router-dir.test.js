@@ -28,4 +28,11 @@ describe('test/router-dir.test.js', () => {
       .expect('hi, egg')
       .expect(200);
   });
+
+  it('should GET *', () => {
+    return app.httpRequest()
+      .get('/fallback')
+      .expect('fallback')
+      .expect(200);
+  });
 });

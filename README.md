@@ -42,7 +42,9 @@ exports.routerPlus = {
 
 ### load `app/router/**/*.js`
 
-this plugin will auto load router define at `app/router/**/*.js`
+this plugin will auto load router define at `app/router/**/*.js`.
+
+**Notice: all sub routers will be loaded before `app/router.js`, please ensure all the sub router definitions are not conflict(better to use `app.router.namespace` to create different namespaces for each sub router file).**
 
 ### app.router.namespace
 

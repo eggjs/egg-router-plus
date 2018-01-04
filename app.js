@@ -18,14 +18,16 @@ module.exports = app => {
     return router.namespace(...args);
   };
 
-  app.beforeStart(() => {
-    const loader = new app.loader.FileLoader({
+  // patch loadRouter
+  // load sub routers first
+  const loadRouter = app.loader.loadRouter;
+  app.loader.loadRouter = function() {
+    new app.loader.FileLoader({
       directory: path.join(app.baseDir, 'app/router'),
       target: {},
       inject: app,
       call: true,
-    });
-
-    loader.load();
-  });
+    }).load();
+    loadRouter.call(app.loader);
+  };
 };

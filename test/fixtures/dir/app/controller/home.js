@@ -6,6 +6,10 @@ class HomeController extends Controller {
   async index() {
     this.ctx.body = 'hi, egg';
   }
+
+  async fallback() {
+    this.ctx.body = 'fallback';
+  }
 }
 
 module.exports = HomeController;
