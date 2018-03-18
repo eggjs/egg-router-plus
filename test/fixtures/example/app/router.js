@@ -20,7 +20,9 @@ module.exports = app => {
   subRouter.get('/get/:id', controller.sub.getParam);
 
   // only the first
-  subRouter.redirect('/go', '/sub/get');
+  subRouter.redirect('/go', '/get');
+
+  subRouter.redirect('/goto', '/get', 304);
 
   subRouter.get('name_router', '/name', controller.sub.get);
   subRouter.redirect('/go_name', 'name_router');
