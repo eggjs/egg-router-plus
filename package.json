@@ -33,7 +33,6 @@
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
-    "debug": "egg-bin debug --inspect-brk",
     "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
     "pkgfiles": "egg-bin pkgfiles",
     "autod": "autod"
