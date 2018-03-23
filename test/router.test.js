@@ -79,6 +79,13 @@ describe('test/router.test.js', () => {
         .expect('location', '/sub/get');
     });
 
+    it('should redirect /sub/goto and get 304 code', () => {
+      return app.httpRequest()
+        .get('/sub/goto')
+        .expect(304)
+        .expect('location', '/sub/get');
+    });
+
     it('should redirect to name router', () => {
       return app.httpRequest()
         .get('/sub/go_name')
