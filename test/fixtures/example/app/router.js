@@ -36,4 +36,9 @@ module.exports = app => {
   // resource
   const postRouter = app.router.namespace('/api', middleware.test({ prefix: 'posts' }));
   postRouter.resources('posts', '/posts', controller.posts);
+
+  // RegExp
+  const regexpRouter = app.router.namespace('/regexp');
+  regexpRouter.get(/^\/get1param\/(\w+)$/, controller.regexp.getParam);
+  regexpRouter.get(/^\/get2param\/(\w+)\/(\w+)$/, controller.regexp.getParam);
 };
