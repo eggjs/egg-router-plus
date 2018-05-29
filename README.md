@@ -73,7 +73,7 @@ module.exports = app => {
   subRouter.get('sub_upload', '/upload', app.controller.sub.upload);
 
   // const subRouter = app.router.namespace('/sub/:id');
-  // cont subRouter = app.router.namespace('/sub', app.middleware.jsonp());
+  // const subRouter = app.router.namespace('/sub', app.middleware.jsonp());
 
   // output: /sub/upload
   console.log(app.url('sub_upload'));
