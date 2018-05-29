@@ -1,4 +1,10 @@
 
+1.2.1 / 2018-05-29
+==================
+
+**fixes**
+  * [[`390189c`](http://github.com/eggjs/egg-router-plus/commit/390189c7ede62571aa94b5e615bc5547c881a79d)] - fix: don't cache router (#8) (Yiyu He <<dead_horse@qq.com>>)
+
 1.2.0 / 2018-01-04
 ==================
 
