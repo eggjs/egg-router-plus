@@ -29,6 +29,10 @@ module.exports = app => {
   adminRouter.get('/get', controller.admin.get);
   adminRouter.post('/post', controller.admin.post);
 
+  const adminRouter2 = app.router.namespace('/admin', middleware.test({ prefix: 'admin2' }));
+  adminRouter2.get('/get2', controller.admin.get);
+  adminRouter2.post('/post2', controller.admin.post);
+
   const nameRouter = app.router.namespace('/name', middleware.test({ prefix: 'name' }));
   nameRouter.get('name_get', '/get', controller.admin.get);
   nameRouter.post('name_post', '/post', controller.admin.post);
