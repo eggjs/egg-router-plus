@@ -24,10 +24,10 @@ describe('test/router.test.js', () => {
       .expect(200);
   });
 
-  it('should cache router', () => {
-    const router1 = app.router.namespace('/test');
+  it('should not cache router', () => {
+    const router1 = app.router.namespace('/test', (ctx, next) => next());
     const router2 = app.router.namespace('/test');
-    assert(router1 === router2);
+    assert(router1 !== router2);
   });
 
   it('dont support regex prefix', () => {
@@ -173,6 +173,22 @@ describe('test/router.test.js', () => {
         .post('/admin/post')
         .expect('admin post')
         .expect('x-router', 'admin')
+        .expect(200);
+    });
+
+    it('should GET /admin/get2', () => {
+      return app.httpRequest()
+        .get('/admin/get2')
+        .expect('admin get')
+        .expect('x-router', 'admin2')
+        .expect(200);
+    });
+
+    it('should POST /admin/post2', () => {
+      return app.httpRequest()
+        .post('/admin/post2')
+        .expect('admin post')
+        .expect('x-router', 'admin2')
         .expect(200);
     });
   });
