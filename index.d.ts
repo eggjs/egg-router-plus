@@ -9,4 +9,3 @@ declare module 'egg' {
     router: RouterPlus
   }
 }
-
