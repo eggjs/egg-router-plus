@@ -1,11 +1,12 @@
-import { Router } from 'egg';
-interface RouterPlus extends Router {
-    namespace(prefix: string, ...middlewares: Function[]):Router
-}
+import { Router, Context } from 'egg';
 
+interface RouterPlus extends Router {
+  namespace(prefix: string, ...middlewares: ((ctx: Context, next: () => Promise) => void)[]): Router
+}
+ 
 declare module 'egg' {
-    interface Application {
-        router: RouterPlus
-    }
+  interface Application {
+    router: RouterPlus
+  }
 }
 
