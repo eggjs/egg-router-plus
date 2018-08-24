@@ -39,7 +39,8 @@
   },
   "files": [
     "app.js",
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "ci": {
     "version": "8, 9"
@@ -53,5 +54,6 @@
   },
   "homepage": "https://github.com/eggjs/egg-router-plus-router-plus#readme",
   "author": "TZ <atian25@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "types": "index.d.ts"
 }
