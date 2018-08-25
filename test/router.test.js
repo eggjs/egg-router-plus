@@ -39,15 +39,15 @@ describe('test/router.test.js', () => {
     }
   });
 
-  it('dont support regex path', () => {
-    try {
-      const router = app.router.namespace('/test');
-      router.get('name', /(\d+)/, app.controller.home.index);
-      throw 'should not run here';
-    } catch (err) {
-      assert(err.message.includes('only support path with string'));
-    }
-  });
+  // it('dont support regex path', () => {
+  //   try {
+  //     const router = app.router.namespace('/test');
+  //     router.get('name', /(\d+)/, app.controller.home.index);
+  //     throw 'should not run here';
+  //   } catch (err) {
+  //     assert(err.message.includes('only support path with string'));
+  //   }
+  // });
 
   describe('sub', () => {
     it('should exec after config.middleware', () => {
@@ -239,4 +239,21 @@ describe('test/router.test.js', () => {
     });
   });
 
+  describe('regexp', () => {
+
+    const regexpTests = [
+      { url: '/regexp/get1param/test', expect: [ 'test' ] },
+      { url: '/regexp/get2param/test/123123', expect: [ 'test', '123123' ] },
+    ];
+
+    regexpTests.forEach(test => {
+      it(`should GET ${test.url}`, () => {
+        return app.httpRequest()
+          .get(test.url)
+          .expect(test.expect)
+          .expect(200);
+      });
+    });
+
+  });
 });
