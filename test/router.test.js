@@ -49,6 +49,15 @@ describe('test/router.test.js', () => {
     }
   });
 
+  it('support chaining', () => {
+    const methods = [ 'head', 'options', 'get', 'put', 'patch', 'post', 'delete', 'del', 'all', 'resources' ];
+    const router = app.router.namespace('/test');
+
+    methods.forEach(method => {
+      assert(router[method]('/', app.controller.home.index) === router)
+    })
+  })
+
   describe('sub', () => {
     it('should exec after config.middleware', () => {
       return app.httpRequest()
