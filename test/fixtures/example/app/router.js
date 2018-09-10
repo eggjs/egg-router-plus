@@ -40,4 +40,16 @@ module.exports = app => {
   // resource
   const postRouter = app.router.namespace('/api', middleware.test({ prefix: 'posts' }));
   postRouter.resources('posts', '/posts', controller.posts);
+
+  // chaining
+  const chainingRouter = app.router.namespace('/chaining');
+  chainingRouter
+    .get('/get', controller.sub.get)
+    .post('/post', controller.sub.post)
+    .put('/put', controller.sub.put)
+    .delete('/delete', controller.sub.del)
+    .del('/del', controller.sub.del)
+    .options('/options', controller.sub.options)
+    .patch('/patch', controller.sub.patch)
+    .head('/head', controller.sub.head);
 };

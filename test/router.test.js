@@ -68,7 +68,7 @@ describe('test/router.test.js', () => {
     it('should GET /sub/get/123', () => {
       return app.httpRequest()
         .get('/sub/get/123')
-        .expect({ id: 123 })
+        .expect({ id: '123' })
         .expect(200);
     });
 
@@ -239,4 +239,61 @@ describe('test/router.test.js', () => {
     });
   });
 
+  describe('chaining', () => {
+    it('should GET /chaining/get', () => {
+      return app.httpRequest()
+        .get('/chaining/get')
+        .expect('sub get')
+        .expect(200);
+    });
+
+    it('should POST /chaining/post', () => {
+      return app.httpRequest()
+        .post('/chaining/post')
+        .expect('sub post')
+        .expect(200);
+    });
+
+    it('should PUT /chaining/put', () => {
+      return app.httpRequest()
+        .put('/chaining/put')
+        .expect('sub put')
+        .expect(200);
+    });
+
+    it('should DELETE /chaining/delete', () => {
+      return app.httpRequest()
+        .delete('/chaining/delete')
+        .expect('x-result', 'sub del')
+        .expect(200);
+    });
+
+    it('should DELETE /chaining/del', () => {
+      return app.httpRequest()
+        .delete('/chaining/del')
+        .expect('x-result', 'sub del')
+        .expect(200);
+    });
+
+    it('should OPTIONS /chaining/options', () => {
+      return app.httpRequest()
+        .options('/chaining/options')
+        .expect('x-result', 'sub options')
+        .expect(200);
+    });
+
+    it('should PATCH /chaining/patch', () => {
+      return app.httpRequest()
+        .patch('/chaining/patch')
+        .expect('x-result', 'sub patch')
+        .expect(200);
+    });
+
+    it('should HEAD /chaining/head', () => {
+      return app.httpRequest()
+        .head('/chaining/head')
+        .expect('x-result', 'sub head')
+        .expect(200);
+    });
+  });
 });
