@@ -49,15 +49,6 @@ describe('test/router.test.js', () => {
     }
   });
 
-  it('support chaining', () => {
-    const methods = [ 'head', 'options', 'get', 'put', 'patch', 'post', 'delete', 'del', 'all', 'resources' ];
-    const router = app.router.namespace('/test');
-
-    methods.forEach(method => {
-      assert(router[method]('/', app.controller.home.index) === router)
-    })
-  })
-
   describe('sub', () => {
     it('should exec after config.middleware', () => {
       return app.httpRequest()
@@ -248,4 +239,61 @@ describe('test/router.test.js', () => {
     });
   });
 
+  describe('chaining', () => {
+    it('should GET /chaining/get', () => {
+      return app.httpRequest()
+        .get('/chaining/get')
+        .expect('sub get')
+        .expect(200);
+    });
+
+    it('should POST /chaining/post', () => {
+      return app.httpRequest()
+        .post('/chaining/post')
+        .expect('sub post')
+        .expect(200);
+    });
+
+    it('should PUT /chaining/put', () => {
+      return app.httpRequest()
+        .put('/chaining/put')
+        .expect('sub put')
+        .expect(200);
+    });
+
+    it('should DELETE /chaining/delete', () => {
+      return app.httpRequest()
+        .delete('/chaining/delete')
+        .expect('x-result', 'sub del')
+        .expect(200);
+    });
+
+    it('should DELETE /chaining/del', () => {
+      return app.httpRequest()
+        .delete('/chaining/del')
+        .expect('x-result', 'sub del')
+        .expect(200);
+    });
+
+    it('should OPTIONS /chaining/options', () => {
+      return app.httpRequest()
+        .options('/chaining/options')
+        .expect('x-result', 'sub options')
+        .expect(200);
+    });
+
+    it('should PATCH /chaining/patch', () => {
+      return app.httpRequest()
+        .patch('/chaining/patch')
+        .expect('x-result', 'sub patch')
+        .expect(200);
+    });
+
+    it('should HEAD /chaining/head', () => {
+      return app.httpRequest()
+        .head('/chaining/head')
+        .expect('x-result', 'sub head')
+        .expect(200);
+    });
+  });
 });
