@@ -68,7 +68,7 @@ describe('test/router.test.js', () => {
     it('should GET /sub/get/123', () => {
       return app.httpRequest()
         .get('/sub/get/123')
-        .expect({ id: 123 })
+        .expect({ id: '123' })
         .expect(200);
     });
 
