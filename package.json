@@ -15,6 +15,7 @@
     "is-type-of": "^1.2.0"
   },
   "devDependencies": {
+    "@types/koa-router": "^7.0.38",
     "autod": "^3.0.0",
     "autod-egg": "^1.0.0",
     "egg": "^2.0.0",
