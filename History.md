@@ -1,4 +1,14 @@
 
+1.3.1 / 2019-07-01
+==================
+
+**features**
+  * [[`287cff3`](http://github.com/eggjs/egg-router-plus/commit/287cff31640f8843e3d558f2d716ac805d1c7ad4)] - feat: fix index.d.ts & add koa-router middleware type (#12) (chs97 <<623528324@qq.com>>)
+  * [[`9c959e0`](http://github.com/eggjs/egg-router-plus/commit/9c959e086371d3ee40f35368241de6831ad5882a)] - feat: support chaining (#11) (hyf <<952764082@qq.com>>)
+
+**fixes**
+  * [[`d091c1f`](http://github.com/eggjs/egg-router-plus/commit/d091c1f1c716fcdc280bde560d52cf520fcb44b1)] - fix: namespace should not be / (#13) (Jeff <<jeff.tian@outlook.com>>)
+
 1.3.0 / 2018-09-10
 ==================
 
