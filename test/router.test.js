@@ -30,7 +30,7 @@ describe('test/router.test.js', () => {
     assert(router1 !== router2);
   });
 
-  it('dont support regex prefix', () => {
+  it('doesn\'t support regex prefix', () => {
     try {
       app.router.namespace(/^test\/.*/);
       throw 'should not run here';
@@ -39,13 +39,23 @@ describe('test/router.test.js', () => {
     }
   });
 
-  it('dont support regex path', () => {
+  it('doesn\'t support regex path', () => {
     try {
       const router = app.router.namespace('/test');
       router.get('name', /(\d+)/, app.controller.home.index);
       throw 'should not run here';
     } catch (err) {
       assert(err.message.includes('only support path with string'));
+    }
+  });
+
+  it('doesn\'t support root namespace "/"', () => {
+    try {
+      const router = app.router.namespace('/');
+      router.get('name', '/hello', app.controller.home.index);
+      throw 'should not run here';
+    } catch (err) {
+      assert(err.message.includes('namespace / is not supported'));
     }
   });
 

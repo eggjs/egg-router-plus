@@ -62,7 +62,7 @@ Support same as Router:
 - `router.verb('router-name', 'path-match', app.controller.action);`
 - `router.verb('router-name', 'path-match', middleware1, ..., middlewareN, app.controller.action);`
 
-Note: `prefix` and `path` are not allow to be `regex`.
+Note: `prefix` and `path` are not allow to be `regex`, and `prefix` can't be '/'.
 
 ```js
 // {app_root}/app/router.js
