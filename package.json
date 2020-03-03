@@ -53,7 +53,7 @@
   "bugs": {
     "url": "https://github.com/eggjs/egg-router-plus/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-router-plus-router-plus#readme",
+  "homepage": "https://github.com/eggjs/egg-router-plus#readme",
   "author": "TZ <atian25@qq.com>",
   "license": "MIT",
   "types": "index.d.ts"
