@@ -17,6 +17,7 @@ module.exports = app => {
   app.router.namespace = (...args) => {
     return router.namespace(...args);
   };
+  app.url = router.url.bind(router);
 
   // patch loadRouter
   // load sub routers first
