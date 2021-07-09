@@ -207,6 +207,7 @@ describe('test/router.test.js', () => {
     it('should url()', () => {
       assert(app.url('name_get') === '/name/get');
       assert(app.url('name_post') === '/name/post');
+      assert(app.url('name_post_notfound') === '');
     });
 
     it('should GET /name/get', () => {
