@@ -312,6 +312,24 @@ describe('test/router.test.js', () => {
     });
   });
 
+  describe('no prefix', () => {
+    it('work with no prefix but with middleware', () => {
+      return app.httpRequest()
+        .get('/no_prefix_middleware/get')
+        .expect('admin get')
+        .expect('x-router', 'no_prefix_middleware')
+        .expect('x-times', '1')
+        .expect(200);
+    });
+
+    it('work with no prefix', () => {
+      return app.httpRequest()
+        .get('/no_prefix/get')
+        .expect('admin get')
+        .expect(200);
+    });
+  });
+
   describe('overrdie', () => {
     it('should get /override/web/admin/hello', () => {
       return app.httpRequest()

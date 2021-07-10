@@ -6,6 +6,14 @@ const Router = require('./lib/router');
 module.exports = app => {
   const router = new Router(app);
 
+  // proxy app.router
+  const rootRouter = router.namespace();
+  Object.defineProperty(app, 'router', {
+    get() {
+      return rootRouter;
+    },
+  });
+
   /**
    * get sub router
    *
@@ -14,15 +22,14 @@ module.exports = app => {
    * @param {...Function} [middlewares] - optional middlewares
    * @return {Router} Return sub router with special prefix
    */
-  const rootRouter = router.namespace('');
-  Object.defineProperty(app, 'router', {
-    get() {
-      return rootRouter;
-    },
-  });
+
   app.router.namespace = (...args) => {
     return router.namespace(...args);
   };
+
+  /**
+   * get url by name
+   */
   app.url = router.url.bind(router);
 
   // patch loadRouter

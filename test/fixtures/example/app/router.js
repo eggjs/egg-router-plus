@@ -53,6 +53,11 @@ module.exports = app => {
     .patch('/patch', controller.sub.patch)
     .head('/head', controller.sub.head);
 
+  const noPrefixRouterWithMiddleware = app.router.namespace(middleware.test({ prefix: 'no_prefix_middleware' }));
+  noPrefixRouterWithMiddleware.get('/no_prefix_middleware/get', controller.admin.get);
+  const noPrefixRouter = app.router.namespace();
+  noPrefixRouter.get('/no_prefix/get', controller.admin.get);
+
   // override
   const overrideRouter = app.router.namespace('/override');
   const overrideWebRouter = app.router.namespace('/override/web');
