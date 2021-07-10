@@ -13,7 +13,8 @@
   ],
   "dependencies": {
     "@eggjs/router": "^2.0.0",
-    "is-type-of": "^1.2.1"
+    "is-type-of": "^1.2.1",
+    "trie-prefix-tree": "^1.5.1"
   },
   "devDependencies": {
     "@types/koa-router": "^7.0.38",

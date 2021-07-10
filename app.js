@@ -14,7 +14,12 @@ module.exports = app => {
    * @param {...Function} [middlewares] - optional middlewares
    * @return {Router} Return sub router with special prefix
    */
-
+  const rootRouter = router.namespace('');
+  Object.defineProperty(app, 'router', {
+    get() {
+      return rootRouter;
+    },
+  });
   app.router.namespace = (...args) => {
     return router.namespace(...args);
   };
