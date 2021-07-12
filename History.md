@@ -1,4 +1,11 @@
 
+2.0.0 / 2021-07-12
+==================
+
+**others**
+  * [[`242753a`](http://github.com/eggjs/egg-router-plus/commit/242753ae2812315b7a21610bfe73b155acc3c7b9)] - feat[BREAKING]: seperate router to improve performance (#15) (Yiyu He <<dead_horse@qq.com>>)
+  * [[`9e72569`](http://github.com/eggjs/egg-router-plus/commit/9e7256936d82dd2b72b44d5987b0f08bcaa03a16)] - docs: fix package.json homepage (#14) (zfx <<502545703@qq.com>>)
+
 1.3.1 / 2019-07-01
 ==================
 
