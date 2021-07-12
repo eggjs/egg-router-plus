@@ -62,7 +62,7 @@ Support same as Router:
 - `router.verb('router-name', 'path-match', app.controller.action);`
 - `router.verb('router-name', 'path-match', middleware1, ..., middlewareN, app.controller.action);`
 
-Note: `prefix` and `path` are not allow to be `regex`, and `prefix` can't be '/'.
+`prefix` and `path` are not allow to be `regex`, and `prefix` can't be '/'.
 
 ```js
 // {app_root}/app/router.js
@@ -79,6 +79,22 @@ module.exports = app => {
   console.log(app.url('sub_upload'));
 };
 ```
+
+ Every different prefix will bind to different router instance, and all the namespaces will sort by trie tree to ensure best match.
+
+ ```js
+ module.exports = app => {
+  const apiRouter = app.router.namespace('/api');
+  const apiWebRouter = app.router.namespace('/api/web');
+  const apiWebAdminRouter = app.router.namespace('/api/web/admin');
+  apiRouter.get('/:a/:b/:c', controller.api.one);
+  apiWebRouter.get('/:a/:b', controller.api.two);
+  apiWebAdminRouter.get('/:a', controller.api.three);
+  // /api/web/admin/hello => controller.api.three
+  // /api/web/foo/hello => controller.api.two
+  // /api/foo/bar/hello => controller.api.one
+};
+ ```
 
 ## Known issues
 

@@ -175,6 +175,7 @@ describe('test/router.test.js', () => {
         .get('/admin/get')
         .expect('admin get')
         .expect('x-router', 'admin')
+        .expect('x-times', '1')
         .expect(200);
     });
 
@@ -183,6 +184,7 @@ describe('test/router.test.js', () => {
         .post('/admin/post')
         .expect('admin post')
         .expect('x-router', 'admin')
+        .expect('x-times', '1')
         .expect(200);
     });
 
@@ -191,6 +193,7 @@ describe('test/router.test.js', () => {
         .get('/admin/get2')
         .expect('admin get')
         .expect('x-router', 'admin2')
+        .expect('x-times', '1')
         .expect(200);
     });
 
@@ -199,6 +202,7 @@ describe('test/router.test.js', () => {
         .post('/admin/post2')
         .expect('admin post')
         .expect('x-router', 'admin2')
+        .expect('x-times', '1')
         .expect(200);
     });
   });
@@ -207,6 +211,7 @@ describe('test/router.test.js', () => {
     it('should url()', () => {
       assert(app.url('name_get') === '/name/get');
       assert(app.url('name_post') === '/name/post');
+      assert(app.url('name_post_notfound') === '');
     });
 
     it('should GET /name/get', () => {
@@ -303,6 +308,47 @@ describe('test/router.test.js', () => {
       return app.httpRequest()
         .head('/chaining/head')
         .expect('x-result', 'sub head')
+        .expect(200);
+    });
+  });
+
+  describe('no prefix', () => {
+    it('work with no prefix but with middleware', () => {
+      return app.httpRequest()
+        .get('/no_prefix_middleware/get')
+        .expect('admin get')
+        .expect('x-router', 'no_prefix_middleware')
+        .expect('x-times', '1')
+        .expect(200);
+    });
+
+    it('work with no prefix', () => {
+      return app.httpRequest()
+        .get('/no_prefix/get')
+        .expect('admin get')
+        .expect(200);
+    });
+  });
+
+  describe('overrdie', () => {
+    it('should get /override/web/admin/hello', () => {
+      return app.httpRequest()
+        .get('/override/web/admin/hello')
+        .expect({ method: 'three', params: { a: 'hello' } })
+        .expect(200);
+    });
+
+    it('should get /override/web/foo/hello', () => {
+      return app.httpRequest()
+        .get('/override/web/foo/hello')
+        .expect({ method: 'two', params: { a: 'foo', b: 'hello' } })
+        .expect(200);
+    });
+
+    it('should get /override/foo/bar/hello', () => {
+      return app.httpRequest()
+        .get('/override/foo/bar/hello')
+        .expect({ method: 'one', params: { a: 'foo', b: 'bar', c: 'hello' } })
         .expect(200);
     });
   });

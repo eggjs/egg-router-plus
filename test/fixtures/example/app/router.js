@@ -52,4 +52,17 @@ module.exports = app => {
     .options('/options', controller.sub.options)
     .patch('/patch', controller.sub.patch)
     .head('/head', controller.sub.head);
+
+  const noPrefixRouterWithMiddleware = app.router.namespace(middleware.test({ prefix: 'no_prefix_middleware' }));
+  noPrefixRouterWithMiddleware.get('/no_prefix_middleware/get', controller.admin.get);
+  const noPrefixRouter = app.router.namespace();
+  noPrefixRouter.get('/no_prefix/get', controller.admin.get);
+
+  // override
+  const overrideRouter = app.router.namespace('/override');
+  const overrideWebRouter = app.router.namespace('/override/web');
+  const overrideWebAdminRouter = app.router.namespace('/override/web/admin');
+  overrideRouter.get('/:a/:b/:c', controller.override.one);
+  overrideWebRouter.get('/:a/:b', controller.override.two);
+  overrideWebAdminRouter.get('/:a', controller.override.three);
 };
